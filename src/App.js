@@ -4,13 +4,27 @@ import { API_KEY } from "./constants/APIKEY"
 import NasaPhoto from "./components/NasaPhoto";
 import Description from "./components/Description"
 import axios from 'axios';
+import styled from "styled-components";
+import themeObject from "./theme";
+
+// STYLED COMPONENTS
+const StyledContainer = styled.div`{
+width: 80%;
+  display: flex;
+  justify-content: space-between;
+  color: ${props => props.theme.colors.navyBlue};
+  background-color: ${props => props.theme.colors.mainBG};
+  ${'' /* color: ${(props) => props.besty ? props.theme.colors.dangerColor : props.theme.colors.primaryColor}; */}
+}
+`
 
 //const API_KEY = process.env.REACT_APP_NASA_KEY;
-
 function App() {
   const [NASAData, setNASAData] = useState([]);
 
 
+
+  //SIDE EFFECTS --- Call API after App is built
   useEffect(() => {
     // use Axios to fetch Nasa Data
     // on success, use setNASAData to put in state 
@@ -27,8 +41,11 @@ function App() {
       })
   }, [])
 
+
+
+  // RETURN to APP this html to build the page
   return (
-    <div className="App">
+    <StyledContainer className="App">
       <h1>NASA PHOTO OF THE DAY!</h1>
       <NasaPhoto param={NASAData} />
       {/* {//date
@@ -38,7 +55,7 @@ function App() {
         {NASAData.date} <span role="img" aria-label='go!'>🚀</span>!
       </p>
       <Description param={NASAData} />
-    </div>
+    </StyledContainer>
   );
 }
 
