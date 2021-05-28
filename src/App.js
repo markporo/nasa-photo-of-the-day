@@ -9,14 +9,38 @@ import themeObject from "./theme";
 
 // STYLED COMPONENTS
 const StyledContainer = styled.div`{
-width: 80%;
+width: 100%;
+height: 100vh;
   display: flex;
-  justify-content: space-between;
+  flex-flow: column;
+  justify-content:  space-around;
   color: ${props => props.theme.colors.navyBlue};
   background-color: ${props => props.theme.colors.mainBG};
   ${'' /* color: ${(props) => props.besty ? props.theme.colors.dangerColor : props.theme.colors.primaryColor}; */}
 }
 `
+
+// Styled H1 COMPONENT
+const StyledH1 = styled.h1`{
+  text-align: center;
+  marging: auto 0;
+}`
+
+//StyledSection COMPONENT
+const StyledSection = styled.section`{
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+}`
+
+//Styled Description COMPONENT
+const StyleDescription = styled.div`{
+  display: flex;
+  flex-flow: column;
+  text-align: left;
+}`
+
+
 
 //const API_KEY = process.env.REACT_APP_NASA_KEY;
 function App() {
@@ -46,15 +70,22 @@ function App() {
   // RETURN to APP this html to build the page
   return (
     <StyledContainer className="App">
-      <h1>NASA PHOTO OF THE DAY!</h1>
-      <NasaPhoto param={NASAData} />
-      {/* {//date
+      <StyledH1>
+        <h1>NASA PHOTO OF THE DAY</h1>
+      </StyledH1>
+      <StyledSection>
+        <p>this is a photo</p>
+        <NasaPhoto param={NASAData} />
+        {/* {//date
       //description} */}
-      <h3>{NASAData.title}</h3>
-      <p>
-        {NASAData.date} <span role="img" aria-label='go!'>🚀</span>!
-      </p>
-      <Description param={NASAData} />
+        <StyleDescription>
+          <h3>{NASAData.title}PHOTO TITLE</h3>
+          <p>
+            DATE{NASAData.date} <span role="img" aria-label='go!'>🚀</span>!
+          </p>
+          <p>description paragraph<Description param={NASAData} /></p>
+        </StyleDescription>
+      </StyledSection>
     </StyledContainer>
   );
 }
