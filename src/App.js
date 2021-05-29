@@ -9,12 +9,16 @@ import themeObject from "./theme";
 
 // STYLED COMPONENTS
 const StyledContainer = styled.div`{
+  background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.3)),url(http://wallpapercave.com/wp/xTkHBfj.jpg);
+  background-size:cover;
+min-width: 1260px;
 width: 100%;
 height: 100vh;
   display: flex;
-  flex-flow: column;
+  flex-flow: row nowrap;
   justify-content:  space-around;
-  color: ${props => props.theme.colors.navyBlue};
+  align-items: center;
+  color: ${props => props.theme.colors.whiteSmoke};
   background-color: ${props => props.theme.colors.mainBG};
   ${'' /* color: ${(props) => props.besty ? props.theme.colors.dangerColor : props.theme.colors.primaryColor}; */}
 }
@@ -23,21 +27,27 @@ height: 100vh;
 // Styled H1 COMPONENT
 const StyledH1 = styled.h1`{
   text-align: center;
-  marging: auto 0;
 }`
 
 //StyledSection COMPONENT
 const StyledSection = styled.section`{
   display: flex;
-  flex-flow: row;
-  justify-content: space-around;
+  flex-flow: row nowrap;
+  justify-content:space-between;
+  margin: 0 5%;
 }`
 
 //Styled Description COMPONENT
 const StyleDescription = styled.div`{
-  display: flex;
-  flex-flow: column;
+  display: block;
   text-align: left;
+  width: 45%;
+  
+}`
+
+// styled Photo
+const StyledPhoto = styled.div`{
+  width: 40%;
 }`
 
 
@@ -70,20 +80,22 @@ function App() {
   // RETURN to APP this html to build the page
   return (
     <StyledContainer className="App">
-      <StyledH1>
-        <h1>NASA PHOTO OF THE DAY</h1>
-      </StyledH1>
+
       <StyledSection>
-        <p>this is a photo</p>
-        <NasaPhoto param={NASAData} />
+        <StyledPhoto>
+          <NasaPhoto param={NASAData} />
+        </StyledPhoto>
         {/* {//date
       //description} */}
         <StyleDescription>
-          <h3>{NASAData.title}PHOTO TITLE</h3>
+          <StyledH1>
+            <h1>NASA PHOTO OF THE DAY</h1>
+          </StyledH1>
+          <h3>{NASAData.title}</h3>
           <p>
-            DATE{NASAData.date} <span role="img" aria-label='go!'>🚀</span>!
+            {NASAData.date} <span role="img" aria-label='go!'>🚀</span>!
           </p>
-          <p>description paragraph<Description param={NASAData} /></p>
+          <Description param={NASAData} />
         </StyleDescription>
       </StyledSection>
     </StyledContainer>
