@@ -11,9 +11,9 @@ import themeObject from "./theme";
 const StyledContainer = styled.div`{
   background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.3)),url(http://wallpapercave.com/wp/xTkHBfj.jpg);
   background-size:cover;
-min-width: 1260px;
-width: 100%;
-height: 100vh;
+  
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-flow: row nowrap;
   justify-content:  space-around;
@@ -21,12 +21,33 @@ height: 100vh;
   color: ${props => props.theme.colors.whiteSmoke};
   background-color: ${props => props.theme.colors.mainBG};
   ${'' /* color: ${(props) => props.besty ? props.theme.colors.dangerColor : props.theme.colors.primaryColor}; */}
+
+  @media (max-width: 1250px) {
+    flex-direction: column;
+    height: 100%;
+
+  }
+ 
 }
 `
 
 // Styled H1 COMPONENT
 const StyledH1 = styled.h1`{
   text-align: center;
+
+  @media (screen and max-width: 1250px) {
+    display: none;
+  }
+
+}`
+
+// Styled H2 COMPONENT
+const StyledH2 = styled.h2`{
+
+  @media (only screen and min-width: 1250px) {
+    display: none;
+  }
+
 }`
 
 //StyledSection COMPONENT
@@ -35,6 +56,11 @@ const StyledSection = styled.section`{
   flex-flow: row nowrap;
   justify-content:space-between;
   margin: 0 5%;
+
+  @media (max-width: 1250px) {
+    flex-direction: column;
+    margin: 4% 5% -6% 5%;
+  }
 }`
 
 //Styled Description COMPONENT
@@ -42,12 +68,36 @@ const StyleDescription = styled.div`{
   display: block;
   text-align: left;
   width: 45%;
+  margin: 0 5% 0 0;
+
+  @media (max-width: 1250px) {
+    width: 85%;
+    margin: 2% 5%;
+  }
   
 }`
 
 // styled Photo
 const StyledPhoto = styled.div`{
   width: 40%;
+
+  @media (max-width: 700px) {
+    margin: 5% 5% 0% 5%;
+
+    img {
+      width: 200%;
+      margin: auto 12.5%;
+    }
+
+  }
+
+  @media (min-width: 700px) and (max-width: 1250px) {
+    img {
+      width: 130%;
+      margin: auto 60%;
+    }
+  }
+
 }`
 
 
@@ -82,22 +132,24 @@ function App() {
     <StyledContainer className="App">
 
       <StyledSection>
+        {/* <StyledH2>NASA PHOTO OF THE DAY</StyledH2> */}
         <StyledPhoto>
           <NasaPhoto param={NASAData} />
         </StyledPhoto>
         {/* {//date
       //description} */}
-        <StyleDescription>
-          <StyledH1>
-            <h1>NASA PHOTO OF THE DAY</h1>
-          </StyledH1>
-          <h3>{NASAData.title}</h3>
-          <p>
-            {NASAData.date} <span role="img" aria-label='go!'>🚀</span>!
-          </p>
-          <Description param={NASAData} />
-        </StyleDescription>
       </StyledSection>
+      <StyleDescription>
+        <StyledH1>
+          <h1>NASA PHOTO OF THE DAY</h1>
+        </StyledH1>
+        <h2>{NASAData.title}</h2>
+        <p>
+          {NASAData.date} <span role="img" aria-label='go!'>🚀</span>!
+          </p>
+        <Description param={NASAData} />
+      </StyleDescription>
+
     </StyledContainer>
   );
 }

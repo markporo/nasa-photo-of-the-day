@@ -3,7 +3,7 @@ import React from "react";
 
 function NasaPhoto(props) {
     const NASAData = props.param;
-    const nPhoto = (NASAData.media_type === "image") ? (<img src={NASAData.url} width="600px" alt="dope ass NASA" />) : (
+    const nPhoto = (NASAData.media_type === "image") ? (<img src={NASAData.url} width="600px" alt="dope ass NASA photo" />) : (
         <iframe
             title="space-video"
             src={NASAData.url}
