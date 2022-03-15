@@ -5,7 +5,6 @@ import NasaPhoto from "./components/NasaPhoto";
 import Description from "./components/Description"
 import axios from 'axios';
 import styled from "styled-components";
-import themeObject from "./theme";
 
 // STYLED COMPONENTS
 const StyledContainer = styled.div`{
@@ -20,7 +19,6 @@ const StyledContainer = styled.div`{
   align-items: center;
   color: ${props => props.theme.colors.whiteSmoke};
   background-color: ${props => props.theme.colors.mainBG};
-  ${'' /* color: ${(props) => props.besty ? props.theme.colors.dangerColor : props.theme.colors.primaryColor}; */}
 
   @media (max-width: 1250px) {
     flex-direction: column;
@@ -34,17 +32,9 @@ const StyledContainer = styled.div`{
 // Styled H1 COMPONENT
 const StyledH1 = styled.h1`{
   text-align: center;
+  font-size: 1.7rem;
 
   @media (screen and max-width: 1250px) {
-    display: none;
-  }
-
-}`
-
-// Styled H2 COMPONENT
-const StyledH2 = styled.h2`{
-
-  @media (only screen and min-width: 1250px) {
     display: none;
   }
 
@@ -55,7 +45,9 @@ const StyledSection = styled.section`{
   display: flex;
   flex-flow: row nowrap;
   justify-content:space-between;
-  margin: 0 5%;
+  margin: 5% 5%;
+  padding: 7% 0;
+  width: 100%;
 
   @media (max-width: 1250px) {
     flex-direction: column;
@@ -68,7 +60,9 @@ const StyleDescription = styled.div`{
   display: block;
   text-align: left;
   width: 45%;
-  margin: 0 5% 0 0;
+  margin: 0 5% 5% 0;
+  padding: 60px 0;
+
 
   @media (max-width: 1250px) {
     width: 85%;
@@ -77,9 +71,19 @@ const StyleDescription = styled.div`{
   
 }`
 
+const StyleP = styled.p`{
+  background-color: whitesmoke;
+  border: 1px solid black;
+  color: black;
+  border-radius: 5px;
+  padding: 5%;
+  
+}`
+
 // styled Photo
 const StyledPhoto = styled.div`{
   width: 40%;
+  border-radius: 5px;
 
   @media (max-width: 700px) {
     margin: 5% 5% 0% 5%;
@@ -87,6 +91,7 @@ const StyledPhoto = styled.div`{
     img {
       width: 200%;
       margin: auto 12.5%;
+      border-radius: 5px;
     }
 
   }
@@ -95,6 +100,7 @@ const StyledPhoto = styled.div`{
     img {
       width: 130%;
       margin: auto 60%;
+      border-radius: 5px;
     }
   }
 
@@ -144,10 +150,11 @@ function App() {
           <h1>NASA PHOTO OF THE DAY</h1>
         </StyledH1>
         <h2>{NASAData.title}</h2>
-        <p>
+        <StyleP>
           {NASAData.date} <span role="img" aria-label='go!'>🚀</span>!
-          </p>
-        <Description param={NASAData} />
+
+          <Description param={NASAData} />
+        </StyleP>
       </StyleDescription>
 
     </StyledContainer>
